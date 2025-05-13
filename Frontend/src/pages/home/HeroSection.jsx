@@ -19,6 +19,7 @@ import { IoMail } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import axios from '../../config/axiosConfig'
 import AboutMe from '../../section/AboutMe';
+import Experience from '../../section/Experience';
 
 const iconMap = {
   github: FaGithub,
@@ -87,10 +88,10 @@ const HeroSection = () => {
 
         </div>
 
+        {/* Experience and Education */}
         <div className='sections'>
-            {/*  */}
             <div className='section_components'>
-                <h1>Section components</h1>
+                <Experience/>
             </div>
 
         </div>

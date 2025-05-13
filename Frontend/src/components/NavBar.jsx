@@ -36,7 +36,7 @@ const NavBar = () => {
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              About
+              About me
             </Link>
         </li>
         <li className="hover:text-blue-500">
@@ -73,7 +73,7 @@ const NavBar = () => {
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              About
+              About me
             </Link>
           </li>
           <li className="hover:text-blue-500">

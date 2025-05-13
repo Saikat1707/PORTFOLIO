@@ -1,0 +1,137 @@
+.Experience_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.Experience_color {
+  height: 10%;
+  width: 100%;
+  background: linear-gradient(to top, transparent, #6E20FF);
+}
+.Experience_content{
+  height: 90%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.Education{
+  height: 100%;
+  width: 40%;
+  display: flex;
+  align-items: start;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.Education h1{
+  margin-bottom: 1rem;
+}
+.Experience{
+  height: 100%;
+  width: 50%;
+}
+.Education_cards{
+  height: 90%;
+  width: 100%;
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+
+.Education_cards::-webkit-scrollbar {
+  width: 6px;
+}
+.Education_cards::-webkit-scrollbar-thumb {
+  background: #750eeb;
+  border-radius: 10px;
+}
+.Education_cards::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.Experience h1{
+  margin-bottom: 1rem;
+}
+
+.experience_card {
+  max-height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  transition: box-shadow 0.3s ease;
+  padding: 0.5rem;
+}
+
+.experience_card::-webkit-scrollbar {
+  width: 6px;
+}
+.experience_card::-webkit-scrollbar-thumb {
+  background: #750eeb;
+  border-radius: 10px;
+}
+.experience_card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+
+
+@media screen and (max-width:900px) {
+  .Experience_color{
+    height: 100px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .Experience_content {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  .Education, .Experience {
+    width: 90%; /* Allow both sections to take full width on smaller screens */
+    height: auto;
+  }
+
+  .Education_cards, .experience_card {
+    width: 100%;
+    align-items: center;
+  }
+
+  .Experience_color {
+    height: 80px;
+  }
+}
+
+/* Optional: Even more responsiveness for very small devices */
+@media screen and (max-width: 500px) {
+  .Experience_content {
+    gap: 1.5rem;
+  }
+
+  .Education h1, .Experience h1 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .Education_cards, .experience_card {
+    padding: 0.5rem;
+  }
+}
