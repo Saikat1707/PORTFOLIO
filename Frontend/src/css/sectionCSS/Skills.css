@@ -1,0 +1,184 @@
+.skills_container {
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.achievement_card {
+  max-height: 400px;
+  height: 20%;
+  width: 90%;
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #5655557c;
+  border: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+.achievement_card:hover{
+  border: 2px solid #605b5b;
+}
+.skills_icons {
+  height: 70%;
+  width: 90%;
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.skill_cards {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  gap: 2rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #7c15f3 transparent;
+}
+
+.skill_cards::-webkit-scrollbar {
+  width: 4px;
+}
+
+.skill_cards::-webkit-scrollbar-thumb {
+  background: #7c15f3;
+  border-radius: 20px;
+}
+
+.skill_cards::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.skillCard {
+  height: 300px;
+  width: 180px;
+  border-radius: 100px;
+  border: 2px solid #fff;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.skillCard:hover img {
+  transform: scale(1.3);
+}
+
+.skillCard:hover h2 {
+  transform: translateY(1rem);
+}
+
+.skillCard img {
+  width: 70%;
+  height: 40%;
+  z-index: 11;
+  transition: all 0.3s ease-in-out;
+}
+
+.skillCard h2 {
+  font-weight: 700;
+  font-size: 1rem;
+  z-index: 11;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+}
+
+.skillCard::after {
+  content: '';
+  background: rgba(110, 32, 255, 0.397);
+  position: absolute;
+  border-radius: 100px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  transition: top 0.5s ease;
+  z-index: 0;
+}
+
+.skillCard:hover::after {
+  top: 0;
+  bottom: 0;
+}
+
+/* ============ Responsive Styles ============ */
+@media screen and (max-width: 1200px){
+    .skillCard {
+        height: 300px;
+        width: 180px;
+    }
+}
+@media screen and (max-width: 1024px) {
+  .skillCard {
+    height: 300px;
+    width: 180px;
+  }
+
+  .skillCard h2 {
+    font-size: 0.95rem;
+  }
+
+  .skills_icons {
+    padding: 0.5rem;
+    width: 95%;
+  }
+
+  .achievement_card {
+    width: 95%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .skillCard {
+    height: 260px;
+    width: 160px;
+  }
+
+  .skillCard h2 {
+    font-size: 0.9rem;
+  }
+
+  .skills_container {
+    padding: 0.5rem;
+  }
+
+  .skill_cards {
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .skillCard {
+    height: 230px;
+    width: 140px;
+  }
+
+  .skillCard h2 {
+    font-size: 0.85rem;
+  }
+
+  .skills_icons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skill_cards {
+    height: auto;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}

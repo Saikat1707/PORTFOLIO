@@ -31,13 +31,13 @@ const Experience = () => {
   ]
   return (
     <div className="Experience_container">
-      <div className="Experience_color"></div>
+      {/* <div className="Experience_color"></div> */}
       <div className="Experience_content">
         <div className="Education">
           <h1 className='text-blue-600 font-bold text-2xl'># Education</h1>
           <div className="Education_cards">
             {education.map((Data,index) => (
-              <EEcard collegeName={Data.collegeName} courseName={Data.courseName} duration={Data.duration} grade={Data.grade}/>
+              <EEcard key={index} collegeName={Data.collegeName} courseName={Data.courseName} duration={Data.duration} grade={Data.grade}/>
             ))}
           </div>
         </div>
@@ -53,11 +53,14 @@ const Experience = () => {
             </p>
             <img src={experience} alt="" />
             <div className="links">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+              {/* <a href="https://github.com/Saikat1707/QuantumStemMERN" target="_blank" rel="noopener noreferrer">
                 <p>🔗 View Project Code on GitHub</p>
+              </a> */}
+              <a href="https://www.linkedin.com/feed/update/urn:li:activity:7282709279919251456/" target="_blank" rel="noopener noreferrer">
+                <p>🔗 View Project on LinkedIn</p>
               </a>
-              <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
-                <p>🔗 View Profile on LinkedIn</p>
+              <a href="https://quantumstem.in/" target="_blank" rel="noopener noreferrer">
+                <p>🔗 View Live on Browser</p>
               </a>
             </div>
           </div>

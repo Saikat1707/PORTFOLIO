@@ -9,14 +9,6 @@
   overflow: hidden;
 }
 
-/* .about-section h2 {
-  text-align: center;
-  font-weight: 700;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #9b7ebd;
-  letter-spacing: 1px;
-} */
 
 .about-content {
   display: flex;
@@ -34,6 +26,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #1f1f2093;
 }
 
 .about-photo img {
@@ -162,6 +155,7 @@
   .about-photo {
     width: 100%;
     height: auto;
+    padding: 1rem;
     margin-bottom: 1.5rem;
   }
 

@@ -22,7 +22,7 @@ const NavBar = () => {
         <li className="hover:text-blue-500">
             <Link 
             onClick={() => {
-              const el = document.querySelector('.hero');
+              const el = document.querySelector('.hero_main');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
           >
@@ -39,6 +39,16 @@ const NavBar = () => {
               About me
             </Link>
         </li>
+        <li className="hover:text-blue-500">
+             <Link 
+              onClick={() => {
+                const el = document.querySelector('.project');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+            Projects
+            </Link>
+          </li>
         <li className="hover:text-blue-500">
             <Link 
               onClick={() => {
@@ -55,11 +65,11 @@ const NavBar = () => {
 
       {/* Mobile Nav */}
       {isOpen && (
-        <ul className="absolute top-20 left-0 w-full bg-[#20275a9e] flex flex-col items-center gap-6 py-6 font-bold navLinks md:hidden z-50">
+        <ul className=" mobileNav absolute top-20 left-0 w-full bg-[#20275a9e] flex flex-col items-center gap-6 py-6 font-bold navLinks md:hidden z-5000000">
           <li className="hover:text-blue-500">
             <Link 
             onClick={() => {
-              const el = document.querySelector('.hero');
+              const el = document.querySelector('.hero_main');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
           >
@@ -74,6 +84,16 @@ const NavBar = () => {
               }}
             >
               About me
+            </Link>
+          </li>
+          <li className="hover:text-blue-500">
+             <Link 
+              onClick={() => {
+                const el = document.querySelector('.project');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+            Projects
             </Link>
           </li>
           <li className="hover:text-blue-500">

@@ -1,0 +1,219 @@
+.contact_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 2rem; */
+  gap: 3rem;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+@media (max-width: 1200px) {
+  .contact_container {
+    height: auto;
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* Profile Image Side */
+.contact_image {
+  width:20%;
+  height: 100%;
+  max-width: 320px;
+}
+
+.image_box {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  background-color: #373636b2;
+}
+
+
+.image_box img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Right Form/Info Section */
+.contact_form {
+  flex: 1 1 500px;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.getInTouch {
+  background-color: black;
+  border-left: 4px solid #9B7EBD;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 20px rgba(212, 190, 228, 0.15);
+}
+
+.getInTouch h2 {
+  color: #FBBF24;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.getInTouch p {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Card Info */
+.contact_card {
+  background: linear-gradient(135deg, #3B1E54, #1c1a2976); 
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: start;
+  backdrop-filter: blur(10px);
+  transition: box-shadow 0.3s ease;
+}
+.mini_avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid #D4BEE4;
+  object-fit: cover;
+  box-shadow: 0 0 12px rgba(155, 126, 189, 0.5);
+  margin-bottom: 1rem;
+}
+.profile_section button{
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 50%;
+    border-radius: 20px;
+    background-color: #f59024;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.profile_section button:hover{
+    background-color: #ffb95f;
+}
+.name {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.location, .email, .phone {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin: 0.3rem 0;
+}
+
+
+/* Optional bottom SVG */
+.custom-shape-divider-bottom-1747196479 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1747196479 svg {
+  display: block;
+  width: 100%;
+  height: 150px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1747196479 .shape-fill {
+  fill: #0E17F2A3;
+}
+
+
+
+/* Medium screens (tablets) */
+@media (max-width: 992px) {
+  .contact_container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .getInTouch{
+    margin-top: 1rem;
+  }
+  .contact_image {
+    max-width: 300px;
+    max-height: 300px;
+    width: 100%;
+    margin-bottom:4rem;
+  }
+
+  .image_box {
+    border-radius: 0;
+    height: auto;
+  }
+
+  .image_box img {
+    height: auto;
+  }
+
+  .contact_form {
+    padding: 0 1rem;
+  }
+}
+
+/* Small devices (phones) */
+@media (max-width: 576px) {
+  .contact_container {
+    padding: 2rem 1rem;
+  }
+
+  .getInTouch {
+    padding: 1rem;
+  }
+
+  .getInTouch h2 {
+    font-size: 0.9rem;
+  }
+
+  .getInTouch p {
+    font-size: 0.9rem;
+  }
+
+  .contact_card {
+    padding: 1.5rem;
+  }
+
+  .mini_avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .name {
+    font-size: 1.2rem;
+  }
+
+  .location, .email, .phone {
+    font-size: 0.85rem;
+  }
+
+  .profile_section button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .custom-shape-divider-bottom-1747196479 svg {
+    height: 100px;
+  }
+}

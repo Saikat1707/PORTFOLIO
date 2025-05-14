@@ -20,6 +20,9 @@ import { Link } from "react-router-dom";
 import axios from '../../config/axiosConfig'
 import AboutMe from '../../section/AboutMe';
 import Experience from '../../section/Experience';
+import Skills from '../../section/Skills';
+import Contact from '../../section/Contact';
+import Project from '../../section/Project';
 
 const iconMap = {
   github: FaGithub,
@@ -69,7 +72,7 @@ const HeroSection = () => {
       <div className="hero-section">
         <NavBar />
         {/* Main Hero Body */}
-        <div className='sections'>
+        <div className='sections hero_main'>
 
             <div className='spacer'></div>
             <div className='section_components hero flex justify-start items-center'>
@@ -95,19 +98,29 @@ const HeroSection = () => {
             </div>
 
         </div>
-
+        
+        {/* Skills */}
         <div className='sections'>
-            {/*  */}
             <div className='section_components'>
-                <h1>Section components</h1>
+                <Skills/>
             </div>
 
         </div>
 
-        <div className='sections'>
+        {/* Project */}
+        <div className='sections project'>
+            <div className='section_components flex-col'>
+            <h2 className='text-xl text-blue-500 font-bold'>#Some of my works</h2>
+                <Project/>
+            </div>
+
+        </div>
+
+        {/* contact me */}
+        <div className='sections contactMe'>
 
             <div className='section_components'>
-                <h1>Section components</h1>
+                <Contact/>
             </div>
 
         </div>

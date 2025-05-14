@@ -1,6 +1,6 @@
 import React from 'react'
 import '../css/Admin.css'
-import profileImg from '../assets/profileImg1.jpg'
+import profileImg from '../assets/photo.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faPhone, faSchool, faDownload } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons'
