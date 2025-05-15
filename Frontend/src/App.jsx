@@ -5,6 +5,7 @@ import CreateLink from './pages/CreateLink'
 import UpdateLink from './pages/UpdateLink'
 import UpdateProject from './pages/UpdateProject'
 import HeroSection from './pages/home/HeroSection'
+import AdminLogin from './pages/AdminLogin'
 
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
     <>
       <Routes>
         <Route path='/' element={<HeroSection/>} />
+        <Route path='/admin/customize/login' element={<AdminLogin/>}/>
         <Route path='/admin/customize' element={<Admin/>} />
         <Route path='/admin/customize/create/:title' element={<CreateLink/>}/>
         <Route path='/admin/customize/update/:title/:linkId' element={<UpdateLink/>}/>
