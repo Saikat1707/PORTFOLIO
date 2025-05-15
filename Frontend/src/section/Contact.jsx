@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/sectionCSS/Contact.css";
 import avatar from '../assets/avatar/avatarContact.png';
-import profileImg from '../assets/photo.jpg';
+import profileImg from '../assets/profilePhoto.jpg';
 const Contact = () => {
   return (
     <div className="contact_container">
