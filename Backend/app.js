@@ -17,7 +17,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 // Optional: To allow only a specific origin (e.g., your React app)
 app.use(cors({
-    origin: 'http://localhost:5173', // frontend port
+    origin: 'https://saikatportfolio-alpha.vercel.app/', // frontend port
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
