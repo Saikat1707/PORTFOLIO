@@ -15,13 +15,14 @@ connection()
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-// Optional: To allow only a specific origin (e.g., your React app)
 app.use(cors({
     origin: 'https://saikatportfolio-alpha.vercel.app/', // frontend port
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
-
+app.get("/",(req,res)=>{
+    res.send("Hello world")
+})
 app.use('/Social', linkRouter)
 app.use('/Project', projectRouter)
 app.use('/Programming', cpLinkRouter)
