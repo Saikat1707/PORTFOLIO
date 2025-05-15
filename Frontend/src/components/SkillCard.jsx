@@ -1,6 +1,6 @@
 import React from 'react'
 import '../css/sectionCSS/Skills.css'
-import mongodb from '../assets/icons/mongoDB.png'
+import mongodb from '../assets/icons/MongoDB.png'
 import nodejs from '../assets/icons/nodeJS.png'
 import deepLearning from '../assets/icons/TensorFlow.png'
 import express from '../assets/icons/Express.png'
