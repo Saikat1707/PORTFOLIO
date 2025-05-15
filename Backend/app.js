@@ -16,7 +16,7 @@ connection()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cors({
-    origin: 'https://saikatportfolio-alpha.vercel.app/', // frontend port
+    origin: 'https://saikatportfolio-alpha.vercel.app', // frontend port
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
