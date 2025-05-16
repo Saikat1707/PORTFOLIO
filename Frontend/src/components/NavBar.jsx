@@ -59,7 +59,7 @@ const NavBar = () => {
               Contact
             </Link>
         </li>
-        <li className="hover:text-blue-500"><Link target='blank' to="https://drive.google.com/file/d/1ptQWw-C0-4eKZJcuXVWSETA7bk0QbmKB/view?usp=sharing">Resume</Link></li>
+        <li className="hover:text-blue-500"><Link target='blank' to="https://drive.google.com/file/d/1rFDcV6e3g6TJ3V8SremH1TqrFt19Fufz/view?usp=drive_link">Resume</Link></li>
         <li className="hover:text-blue-500"><Link to="/admin/customize/login">Admin</Link></li>
       </ul>
 
@@ -106,7 +106,7 @@ const NavBar = () => {
               Contact
             </Link>
           </li>
-          <li className="hover:text-blue-500"><Link target='blank' to="https://drive.google.com/file/d/1ptQWw-C0-4eKZJcuXVWSETA7bk0QbmKB/view?usp=sharing " onClick={() => setIsOpen(false)}>Resume</Link></li>
+          <li className="hover:text-blue-500"><Link target='blank' to="https://drive.google.com/file/d/1rFDcV6e3g6TJ3V8SremH1TqrFt19Fufz/view?usp=drive_link" onClick={() => setIsOpen(false)}>Resume</Link></li>
           <li className="hover:text-blue-500"><Link to="/admin/customize/login" onClick={() => setIsOpen(false)}>Admin</Link></li>
         </ul>
       )}
