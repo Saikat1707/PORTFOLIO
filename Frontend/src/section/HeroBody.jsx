@@ -57,7 +57,10 @@ const HeroBody = () => {
           technologies and always eager to learn new tools and frameworks.
           Committed to delivering clean, efficient, and impactful solutions.
         </h3>
-        <button>
+        <button onClick={() => {
+                const el = document.querySelector('.contactMe');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}>
           <span>Contact</span>
         </button>
       </div>
