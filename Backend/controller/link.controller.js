@@ -26,7 +26,7 @@ const getLinkByNameAndUpdate = async (req, res) => {
         }
 
         const linkData = await linkModel.findByIdAndUpdate(
-            { id },
+            id,
             { title , url },
             { new: true } 
         );
