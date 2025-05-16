@@ -39,7 +39,10 @@ const Contact = () => {
           <p className="location">📍 Kolkata , garia , sreenagar west  , 700094</p>
           <p className="email">📧 berasaikat731@gmail.com</p>
           <p className="phone">📞 +91 8509904168</p>
-          <button><a href="mailto:berasaikat731@gmail.com">Hire me</a> </button>
+          <button onClick={() => window.location.href = "mailto:berasaikat731@gmail.com"}>
+            Hire me
+          </button>
+
         </div>
       </div>
     </div>
