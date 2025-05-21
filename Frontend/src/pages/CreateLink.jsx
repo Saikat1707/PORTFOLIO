@@ -41,7 +41,7 @@ const CreateLink = () => {
       form.append('url', formData.projectLink);
       form.append('projectDescription', formData.projectDescription);
       form.append('image', formData.projectImage); // use 'image' to match backend multer.single('image')
-
+      console.log(form);
       await axios.post(`/${title}/create`, form);
       setSuccessMessage('Project created successfully!');
       navigate('/admin/customize');
