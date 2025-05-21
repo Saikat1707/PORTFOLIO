@@ -6,13 +6,14 @@ const { uploadFile } = require('../config/cloudinary.config'); // Import the clo
 const createProject = async (req, res) => {
   try {
     const { title, url, projectDescription } = req.body;
-    const localFilePath = req.file?.path; // Use req.file for multer file data
+    const fileBuffer = req.file?.buffer;  // multer memory buffer
+    const originalName = req.file?.originalname;
 
     if (!title || !url || !projectDescription) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    if (!localFilePath) {
+    if (!fileBuffer) {
       return res.status(400).json({ message: 'Image upload failed' });
     }
 
@@ -21,24 +22,24 @@ const createProject = async (req, res) => {
       return res.status(400).json({ message: 'Project already exists' });
     }
 
-    // Upload the image to Cloudinary
-    const cloudinaryResult = await uploadFile(localFilePath);
+    // Upload the image buffer to Cloudinary
+    const cloudinaryResult = await uploadFile(fileBuffer);
     if (!cloudinaryResult) {
       return res.status(400).json({ message: 'Cloudinary upload failed' });
     }
 
-    // Save image data to the image model
+    // Save image metadata
     const projectImageData = await imageModel.create({
-      originalName: req.file.originalname,
-      filePath: localFilePath,
-      secureUrl: cloudinaryResult.secure_url, // Cloudinary URL
+      originalName,
+      secureUrl: cloudinaryResult.secure_url,
+      publicId: cloudinaryResult.public_id,
     });
 
     if (!projectImageData) {
-      return res.status(400).json({ message: 'Image upload failed' });
+      return res.status(400).json({ message: 'Image save failed' });
     }
 
-    // Create the project and associate the image
+    // Create project and link image
     const project = await projectModel.create({
       title,
       url,
@@ -46,11 +47,13 @@ const createProject = async (req, res) => {
       projectImageRefId: projectImageData._id,
     });
 
-    return res.status(200).json({ message: 'Project created successfully', data: project });
+    return res.status(201).json({ message: 'Project created successfully', data: project });
   } catch (error) {
+    console.error('Create project error:', error);
     return res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
+
 
 
 // Get All Projects
