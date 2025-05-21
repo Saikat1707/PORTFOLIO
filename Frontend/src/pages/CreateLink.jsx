@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useParams , useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import '../css/CreateLink.css';
 import axios from '../config/axiosConfig';
 
 const CreateLink = () => {
   const { title } = useParams();
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     projectTitle: '',
     projectLink: '',
@@ -18,62 +19,63 @@ const CreateLink = () => {
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
+  // Handle form input change
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
-    if (type === 'file') {
-      setFormData({ ...formData, [name]: files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === 'file' ? files[0] : value,
+    }));
   };
 
-  const onProjectformSubmit = async (e) => {
+  // Submit handler for project form
+  const handleProjectSubmit = async (e) => {
     e.preventDefault();
-
-    const projectData = new FormData();
-    projectData.append('title', formData.projectTitle);
-    projectData.append('url', formData.projectLink);
-    projectData.append('projectDescription', formData.projectDescription);
-    projectData.append('projectImage', formData.projectImage);
+    setError('');
+    setSuccessMessage('');
 
     try {
-      await axios.post(`/${title}/create`, projectData);
+      const form = new FormData();
+      form.append('title', formData.projectTitle);
+      form.append('url', formData.projectLink);
+      form.append('projectDescription', formData.projectDescription);
+      form.append('image', formData.projectImage); // use 'image' to match backend multer.single('image')
+
+      await axios.post(`/${title}/create`, form);
       setSuccessMessage('Project created successfully!');
-      setError('');
       navigate('/admin/customize');
     } catch (err) {
-      setError(`${err.response.data.message}. Please try again. `);
-      setSuccessMessage('');
+      setError(err.response?.data?.message || 'Something went wrong');
     }
   };
 
-  const onLinkFormSubmit = async (e) => {
+  // Submit handler for social/programming link
+  const handleLinkSubmit = async (e) => {
     e.preventDefault();
-
-    const linkData = {
-      title: formData.linkLabel,
-      url: formData.linkUrl,
-    };
+    setError('');
+    setSuccessMessage('');
 
     try {
-      await axios.post(`/${title}/create`, linkData);
+      const payload = {
+        title: formData.linkLabel,
+        url: formData.linkUrl,
+      };
+
+      await axios.post(`/${title}/create`, payload);
       setSuccessMessage(`${title} link created successfully!`);
-      setError('');
-      navigate('/admin/customize')
+      navigate('/admin/customize');
     } catch (err) {
-      console.log(err.response.data.message)
-      setError(`${err.response.data.message}. Please try again. `);
-      setSuccessMessage('');
+      setError(err.response?.data?.message || 'Something went wrong');
     }
   };
 
   return (
     <div className="form-wrapper">
-      <h1 className="text-xl font-bold mb-3">Create a {title} Link</h1>
+      <h1 className="text-xl font-bold mb-4">Create a {title} Link</h1>
 
       {title === 'Project' ? (
-        // Project form
-        <form method="POST" encType="multipart/form-data" onSubmit={onProjectformSubmit}>
+        // 🛠️ Project Creation Form
+        <form onSubmit={handleProjectSubmit} encType="multipart/form-data">
           <div className="form-group">
             <label htmlFor="projectTitle">Project Title</label>
             <input
@@ -85,6 +87,7 @@ const CreateLink = () => {
               required
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="projectLink">Project Link</label>
             <input
@@ -96,6 +99,7 @@ const CreateLink = () => {
               required
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="projectDescription">Project Description</label>
             <textarea
@@ -106,6 +110,7 @@ const CreateLink = () => {
               required
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="projectImage">Project Image</label>
             <input
@@ -117,11 +122,12 @@ const CreateLink = () => {
               required
             />
           </div>
+
           <button type="submit">Create Project</button>
         </form>
       ) : (
-        // Programming/Social form
-        <form onSubmit={onLinkFormSubmit}>
+        // 🔗 Link Creation Form (Social / Programming)
+        <form onSubmit={handleLinkSubmit}>
           <div className="form-group">
             <label htmlFor="linkLabel">Link Label</label>
             <input
@@ -133,6 +139,7 @@ const CreateLink = () => {
               required
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="linkUrl">Link URL</label>
             <input
@@ -144,10 +151,12 @@ const CreateLink = () => {
               required
             />
           </div>
+
           <button type="submit">Create Link</button>
         </form>
       )}
 
+      {/* Feedback Messages */}
       {error && <div className="error-message">{error}</div>}
       {successMessage && <div className="success-message">{successMessage}</div>}
     </div>
