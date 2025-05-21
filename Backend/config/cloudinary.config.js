@@ -1,6 +1,6 @@
+// utils/cloudinaryUploader.js
 const { v2: cloudinary } = require('cloudinary');
-const fs = require('fs');
-const path = require('path');
+const streamifier = require('streamifier'); // required for buffer upload
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -8,36 +8,23 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const uploadFile = async (localFilePath) => {
-  try {
-    if (!localFilePath) {
-      throw new Error('No file path provided');
-    }
+/**
+ * Upload file buffer to Cloudinary using stream
+ * @param {Buffer} buffer - File buffer
+ * @returns {Promise<Object>} Cloudinary response
+ */
+const uploadFileFromBuffer = (buffer) => {
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      { resource_type: 'auto' },
+      (error, result) => {
+        if (error) return reject(error);
+        resolve(result);
+      }
+    );
 
-    if (!fs.existsSync(localFilePath)) {
-      throw new Error(`File not found at path: ${localFilePath}`);
-    }
-
-    const uploadedFile = await cloudinary.uploader.upload(localFilePath, {
-      resource_type: 'auto',
-    });
-
-    console.log('✅ File uploaded to Cloudinary:', uploadedFile.secure_url);
-
-    // Clean up local file after successful upload
-    fs.unlinkSync(localFilePath);
-
-    return uploadedFile;
-  } catch (error) {
-    console.error('❌ Upload to Cloudinary failed:', error.message);
-
-    // Clean up if error occurred and file still exists
-    if (fs.existsSync(localFilePath)) {
-      fs.unlinkSync(localFilePath);
-    }
-
-    throw error; // Let the caller handle the error
-  }
+    streamifier.createReadStream(buffer).pipe(uploadStream);
+  });
 };
 
-module.exports = { uploadFile };
+module.exports = { uploadFileFromBuffer };
