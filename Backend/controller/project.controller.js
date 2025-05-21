@@ -1,44 +1,40 @@
 const projectModel = require('../models/project.models');
 const imageModel = require('../models/image.models');
-const { uploadFile } = require('../config/cloudinary.config'); // Import the cloudinary function
+// const { uploadFile } = require('../config/cloudinary.config'); // Import the cloudinary function
+const { uploadFileFromBuffer } = require('../config/cloudinary.config');
 
-// Create Project
 const createProject = async (req, res) => {
   try {
     const { title, url, projectDescription } = req.body;
-    const localFilePath = req.file?.path; // Use req.file for multer file data
 
     if (!title || !url || !projectDescription) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    if (!localFilePath) {
-      return res.status(400).json({ message: `Image upload failed with req.file ${res.file}`});
+    if (!req.file || !req.file.buffer) {
+      return res.status(400).json({ message: 'Image upload failed: No file buffer found' });
     }
 
+    // Check for existing project
     const existingProject = await projectModel.findOne({ title });
     if (existingProject) {
       return res.status(400).json({ message: 'Project already exists' });
     }
 
-    // Upload the image to Cloudinary
-    const cloudinaryResult = await uploadFile(localFilePath);
+    // Upload the image to Cloudinary from buffer
+    const cloudinaryResult = await uploadFileFromBuffer(req.file.buffer);
     if (!cloudinaryResult) {
       return res.status(400).json({ message: 'Cloudinary upload failed' });
     }
 
-    // Save image data to the image model
+    // Save image reference in DB
     const projectImageData = await imageModel.create({
       originalName: req.file.originalname,
-      filePath: localFilePath,
-      secureUrl: cloudinaryResult.secure_url, // Cloudinary URL
+      filePath: 'Uploaded via memory buffer',
+      secureUrl: cloudinaryResult.secure_url,
     });
 
-    if (!projectImageData) {
-      return res.status(400).json({ message: 'Image upload failed' });
-    }
-
-    // Create the project and associate the image
+    // Create project with image ref
     const project = await projectModel.create({
       title,
       url,
@@ -48,6 +44,7 @@ const createProject = async (req, res) => {
 
     return res.status(200).json({ message: 'Project created successfully', data: project });
   } catch (error) {
+    console.error('Create Project Error:', error.message);
     return res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
