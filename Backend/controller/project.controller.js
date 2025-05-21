@@ -13,7 +13,7 @@ const createProject = async (req, res) => {
     }
 
     if (!localFilePath) {
-      return res.status(400).json({ message: `Image upload failed ${localFilePath}`});
+      return res.status(400).json({ message: `Image upload failed with local file path ${localFilePath}`});
     }
 
     const existingProject = await projectModel.findOne({ title });
