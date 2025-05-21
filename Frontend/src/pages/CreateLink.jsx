@@ -40,7 +40,7 @@ const CreateLink = () => {
       form.append('title', formData.projectTitle);
       form.append('url', formData.projectLink);
       form.append('projectDescription', formData.projectDescription);
-      form.append('image', formData.projectImage);
+      form.append('projectImage', formData.projectImage);
 
       for (let [key, value] of form.entries()) {
         console.log(`${key}:`, value);
