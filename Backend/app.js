@@ -20,6 +20,8 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
+app.use('/uploads', express.static('public/uploads'));
+
 app.get("/",(req,res)=>{
     res.send("Hello world")
 })
