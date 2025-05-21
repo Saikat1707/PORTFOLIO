@@ -39,7 +39,7 @@ const UpdateProject = () => {
     e.preventDefault();
     const data = new FormData();
     data.append('title', formData.title);
-    data.append('url', formData.url);
+    data.append('url', formData.link);
     data.append('projectDescription', formData.description);
     
     if (image) data.append('image', image);
