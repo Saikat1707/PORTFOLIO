@@ -1,24 +1,29 @@
-const { v2: cloudinary } = require('cloudinary');
-const streamifier = require('streamifier');
+const { v2:cloudinary} = require('cloudinary');
+const fs = require('fs');
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+})
 
-const uploadFile = (buffer) => {
-  return new Promise((resolve, reject) => {
-    const uploadStream = cloudinary.uploader.upload_stream(
-      { resource_type: 'auto' },
-      (error, result) => {
-        if (error) reject(error);
-        else resolve(result);
-      }
-    );
+const uploadFile = async (localStoragePath) =>{
+    try {
+        if(!localStoragePath) return null;
+        const uploadedFile = await cloudinary.uploader.upload(localStoragePath , {
+            resource_type: 'auto',
+        })
+        console.log('file uploaded to cloudinary')
+        return uploadedFile;
+    } catch (error) {
+        if (fs.existsSync(localStoragePath)) {
+            fs.unlinkSync(localStoragePath);
+        }
+      
+        return error;
+    }
 
-    streamifier.createReadStream(buffer).pipe(uploadStream);
-  });
-};
+}
 
-module.exports = { uploadFile };
+
+module.exports = {uploadFile}
