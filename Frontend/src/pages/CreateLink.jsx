@@ -22,6 +22,7 @@ const CreateLink = () => {
   // Handle form input change
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
+    console.log('Changing:', name, value); 
     setFormData((prevData) => ({
       ...prevData,
       [name]: type === 'file' ? files[0] : value,
