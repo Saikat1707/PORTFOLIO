@@ -3,6 +3,8 @@ const imageModel = require('../models/image.models');
 // const { uploadFile } = require('../config/cloudinary.config'); // Import the cloudinary function
 const { uploadFileFromBuffer } = require('../config/cloudinary.config');
 
+//create project 
+
 const createProject = async (req, res) => {
   try {
     const { title, url, projectDescription } = req.body;
@@ -89,43 +91,47 @@ const deleteProject = async (req, res) => {
 // Update Project
 const updateProject = async (req, res) => {
   try {
-      const { id } = req.params;
-      const { title, url, projectDescription } = req.body;
+    const { id } = req.params;
+    const { title, url, projectDescription } = req.body;
 
-      const project = await projectModel.findById(id);
-      if (!project) {
-          return res.status(404).json({ message: 'Project not found' });
-      }
-      if (title) project.title = title;
-      if (url) project.url = url;
-      if (projectDescription) project.projectDescription = projectDescription;
-      if (req.file?.path) {
-          if (project.projectImageRefId) {
-              const oldImage = await imageModel.findById(project.projectImageRefId);
-              if (oldImage) {
-                  await imageModel.findByIdAndDelete(project.projectImageRefId);
-              }
-          }
+    const project = await projectModel.findById(id);
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
 
-          const cloudinaryResult = await uploadFile(req.file.path);
-          if (!cloudinaryResult) {
-              return res.status(400).json({ message: 'Cloudinary upload failed' });
-          }
+    // Update text fields
+    if (title) project.title = title;
+    if (url) project.url = url;
+    if (projectDescription) project.projectDescription = projectDescription;
 
-          const newImage = await imageModel.create({
-              originalName: req.file.originalname,
-              filePath: req.file.path,
-              secureUrl: cloudinaryResult.secure_url, 
-          });
-
-          project.projectImageRefId = newImage._id;
+    // If a new image is uploaded
+    if (req.file && req.file.buffer) {
+      // Delete old image if exists
+      if (project.projectImageRefId) {
+        await imageModel.findByIdAndDelete(project.projectImageRefId);
       }
 
-      await project.save();
+      // Upload new image to Cloudinary
+      const cloudinaryResult = await uploadFileFromBuffer(req.file.buffer);
+      if (!cloudinaryResult) {
+        return res.status(400).json({ message: 'Cloudinary upload failed' });
+      }
 
-      return res.status(200).json({ message: 'Project updated successfully', data: project });
+      // Save new image reference
+      const newImage = await imageModel.create({
+        originalName: req.file.originalname,
+        filePath: 'Uploaded via memory buffer',
+        secureUrl: cloudinaryResult.secure_url,
+      });
+
+      project.projectImageRefId = newImage._id;
+    }
+
+    await project.save();
+
+    return res.status(200).json({ message: 'Project updated successfully', data: project });
   } catch (error) {
-      return res.status(500).json({ message: 'Server error', error: error.message });
+    return res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
 
