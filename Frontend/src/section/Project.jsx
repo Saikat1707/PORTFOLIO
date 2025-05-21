@@ -33,6 +33,9 @@ const Project = () => {
               <a href={projectData[0].url} target="_blank" rel="noopener noreferrer">
                 🔗 View Project on GitHub
               </a>
+              <a href="https://www.linkedin.com/posts/saikat-bera-42b7b6267_dutio-webapp-inprogress-activity-7330993012564520962-N7Ua?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEFvqeMB8fwmW3RW1884t1cIMzqR4QVTdRU" target="_blank" rel="noopener noreferrer">
+                🔗 View Project on LinkedIN
+              </a>
             </div>
           </div>
 
