@@ -106,7 +106,7 @@ const NavBar = () => {
               Contact
             </Link>
           </li>
-          <li className="hover:text-blue-500"><Link target='blank' to="https://drive.google.com/file/d/1rFDcV6e3g6TJ3V8SremH1TqrFt19Fufz/view?usp=drive_link" onClick={() => setIsOpen(false)}>Resume</Link></li>
+          <li className="hover:text-blue-500"><Link target='blank' to="https://drive.google.com/file/d/1yGleUfO8iw8rmamlkLrwMBte5H9sp1Nr/view?usp=drive_link" onClick={() => setIsOpen(false)}>Resume</Link></li>
           <li className="hover:text-blue-500"><Link to="/admin/customize/login" onClick={() => setIsOpen(false)}>Admin</Link></li>
         </ul>
       )}
