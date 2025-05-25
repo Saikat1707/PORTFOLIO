@@ -4,21 +4,31 @@ import axios from '../config/axiosConfig';
 
 const Project = () => {
   const [projectData, setProjectData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/Project/display')
-      .then((res) => {
-        setProjectData(res.data.data);
-        console.log(res.data.data);
-      })
-      .catch((err) => {
-        console.error('Error fetching projects:', err);
-      });
-  }, []);
+      axios.get('/Project/display')
+        .then((res) => {
+          setProjectData(res.data.data);
+          console.log(res.data.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error('Error fetching projects:', err);
+          setLoading(false); 
+        });
+    }, []);
 
-  return (
-    <div className="Project_container">
-      {projectData.length > 0 && (
+
+ return (
+  <div className="Project_container">
+    {loading ? (
+      <div className="flex flex-col items-center justify-center gap-2 min-h-[300px]">
+        <div className="w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-white text-sm">Loading projects...</p>
+      </div>
+    ) : (
+      projectData.length > 0 && (
         <>
           <div className="project_card tall_card">
             <div className="card_image">
@@ -59,9 +69,11 @@ const Project = () => {
             ))}
           </div>
         </>
-      )}
-    </div>
-  );
+      )
+    )}
+  </div>
+);
+
 };
 
 export default Project;
