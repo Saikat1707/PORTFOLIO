@@ -1,79 +1,106 @@
 import React, { useEffect, useState } from 'react';
 import '../css/sectionCSS/Project.css';
 import axios from '../config/axiosConfig';
+import { FaGithub, FaLinkedin, FaExternalLinkAlt } from 'react-icons/fa';
 
 const Project = () => {
   const [projectData, setProjectData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-      axios.get('/Project/display')
-        .then((res) => {
-          setProjectData(res.data.data);
-          console.log(res.data.data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error('Error fetching projects:', err);
-          setLoading(false); 
-        });
-    }, []);
+    axios.get('/Project/display')
+      .then((res) => {
+        setProjectData(res.data.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error fetching projects:', err);
+        setLoading(false); 
+      });
+  }, []);
 
+  const truncateDescription = (text, maxLength = 150) => {
+    if (text.length <= maxLength) return text;
+    return `${text.substring(0, maxLength)}...`;
+  };
 
- return (
-  <div className="Project_container">
-    {loading ? (
-      <div className="flex flex-col items-center justify-center gap-2 min-h-[300px]">
-        <div className="w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-white text-sm">Loading projects...</p>
-      </div>
-    ) : (
-      projectData.length > 0 && (
-        <>
-          <div className="project_card tall_card">
-            <div className="card_image">
-              <img
-                src={projectData[0].projectImageRefId?.secureUrl}
-                alt={projectData[0].title}
-              />
-            </div>
-            <div className="card_text">
-              <h3>{projectData[0].title}</h3>
-              <p>{projectData[0].projectDescription}</p>
-              <a href={projectData[0].url} target="_blank" rel="noopener noreferrer">
-                🔗 View Project on GitHub
-              </a>
-              <a href="https://www.linkedin.com/posts/saikat-bera-42b7b6267_dutio-webapp-inprogress-activity-7330993012564520962-N7Ua?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEFvqeMB8fwmW3RW1884t1cIMzqR4QVTdRU" target="_blank" rel="noopener noreferrer">
-                🔗 View Project on LinkedIN
-              </a>
-            </div>
-          </div>
-
-          <div className="project_grid">
-            {projectData.slice(1).map((project, index) => (
-              <div className="project_card short_card" key={project._id || index}>
-                <div className="card_image">
-                  <img
-                    src={project.projectImageRefId?.secureUrl}
-                    alt={project.title}
-                  />
+  return (
+    <div className="project-container">
+      {loading ? (
+        <div className="loading-spinner">
+          <div className="spinner"></div>
+          <p>Loading projects...</p>
+        </div>
+      ) : (
+        projectData.length > 0 && (
+          <>
+            {/* Featured Project (Tall Card) */}
+            <div className="project-card featured">
+              <div className="card-media">
+                <img
+                  src={projectData[0].projectImageRefId?.secureUrl}
+                  alt={projectData[0].title}
+                  loading="lazy"
+                />
+              </div>
+              <div className="card-content">
+                <h3>{projectData[0].title}</h3>
+                <div className="description-scroll">
+                  <p>{projectData[0].projectDescription}</p>
                 </div>
-                <div className="card_text">
-                  <h3>{project.title}</h3>
-                  <p>{project.projectDescription}</p>
-                  <a href={project.url} target="_blank" rel="noopener noreferrer">
-                    🔗 View Project on GitHub
+                <div className="project-links">
+                  <a href={projectData[0].url} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <FaGithub className="icon" />
+                  </a>
+                  <a href="https://www.linkedin.com/posts/saikat-bera-42b7b6267_dutio-webapp-inprogress-activity-7330993012564520962-N7Ua" 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     aria-label="LinkedIn">
+                    <FaLinkedin className="icon" />
+                  </a>
+                  <a href={projectData[0].liveUrl || projectData[0].url} 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     aria-label="Live Demo">
+                    <FaExternalLinkAlt className="icon" />
                   </a>
                 </div>
               </div>
-            ))}
-          </div>
-        </>
-      )
-    )}
-  </div>
-);
+            </div>
 
+            {/* Project Grid */}
+            <div className="project-grid">
+              {projectData.slice(1).map((project) => (
+                <div className="project-card" key={project._id}>
+                  <div className="card-media">
+                    <img
+                      src={project.projectImageRefId?.secureUrl}
+                      alt={project.title}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="card-content">
+                    <h3>{project.title}</h3>
+                    <p>{truncateDescription(project.projectDescription)}</p>
+                    <div className="project-links">
+                      <a href={project.url} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <FaGithub className="icon" />
+                      </a>
+                      {project.liveUrl && (
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                          <FaExternalLinkAlt className="icon" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )
+      )}
+    </div>
+  );
 };
 
 export default Project;
