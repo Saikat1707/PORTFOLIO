@@ -3,7 +3,7 @@
 <p align="center">
   <b>A showcase of my skills, projects, and experiences as a Full Stack Developer.</b><br/>
   <a href="https://saikatportfolio-alpha.vercel.app">🔗 Live Portfolio</a> • 
-  <a href="https://www.linkedin.com/in/saikatbera1707/](https://www.linkedin.com/feed/update/urn:li:activity:7331351500411076608/">📇 LinkedIn</a>
+  <a href="https://www.linkedin.com/feed/update/urn:li:activity:7331351500411076608/">📇 LinkedIn</a>
 </p>
 
 <p align="center">
