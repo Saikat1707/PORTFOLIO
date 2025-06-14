@@ -8,7 +8,7 @@
 
 .sections{
     position: relative;
-    height: 100vh;
+    height: auto;
     width: 100vw;
     background: url('../../assets/low-poly-grid-haikei.svg') center/cover no-repeat;
     display: flex;
