@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../css/sectionCSS/Project.css';
 import axios from '../config/axiosConfig';
+import { FaGithub } from 'react-icons/fa';
 
 const Project = () => {
   const [projectData, setProjectData] = useState([]);
@@ -41,7 +42,7 @@ const Project = () => {
               <h3>{projectData[0].title}</h3>
               <p>{projectData[0].projectDescription}</p>
               <a href={projectData[0].url} target="_blank" rel="noopener noreferrer">
-                🔗 View Project on GitHub
+                 <FaGithub className="text-2xl text-white hover:text-gray-400 transition" />
               </a>
               <a href="https://www.linkedin.com/posts/saikat-bera-42b7b6267_dutio-webapp-inprogress-activity-7330993012564520962-N7Ua?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEFvqeMB8fwmW3RW1884t1cIMzqR4QVTdRU" target="_blank" rel="noopener noreferrer">
                 🔗 View Project on LinkedIN
@@ -62,7 +63,7 @@ const Project = () => {
                   <h3>{project.title}</h3>
                   <p>{project.projectDescription}</p>
                   <a href={project.url} target="_blank" rel="noopener noreferrer">
-                    🔗 View Project on GitHub
+                     <FaGithub className="text-2xl text-white hover:text-gray-400 transition" />
                   </a>
                 </div>
               </div>
