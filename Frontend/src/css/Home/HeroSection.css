@@ -1,77 +1,110 @@
+/* ===== Base Styles ===== */
 .hero-section {
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
   position: relative;
+  background-color: #0c0c0c; /* Fallback if SVG fails */
 }
 
-.sections{
-    position: relative;
-    height: auto;
-    width: 100vw;
-    background: url('../../assets/low-poly-grid-haikei.svg') center/cover no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+/* ===== Section Styles ===== */
+.sections {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* Ensures full viewport height */
+  background: url('../../assets/low-poly-grid-haikei.svg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
 }
-.section_components{
-    z-index: 111;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 .sections::after {
-  position: absolute;
   content: '';
+  position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
-  background: rgba(12, 12, 12, 0.41);
+  height: 100%;
+  background: rgba(12, 12, 12, 0.7); /* Darker overlay for better text contrast */
   z-index: 1;
 }
-.spacer{
-  height: 15%;
-  width: 100vw;
-}
-.hero{
+
+.section_components {
+  z-index: 2;
   width: 100%;
-  height: 85%;
+  max-width: 1200px; /* Prevents content from stretching too wide */
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Hero Section Specific ===== */
+.spacer {
+  height: 80px; /* Fixed height for consistency */
+  width: 100%;
+}
+
+.hero {
+  width: 100%;
+  height: calc(100vh - 80px); /* Dynamic height minus spacer */
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 2rem;
 }
 
-
-
-.socialLinks{
-    position: fixed;
-    padding: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 2rem;
-    left: 0;
-    z-index: 9999;
+/* ===== Social Links ===== */
+.socialLinks {
+  position: fixed;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 9999;
+  padding: 1rem;
+  background: rgba(20, 20, 20, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
+.socialLinks a {
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.2s ease;
+}
 
+.socialLinks a:hover {
+  color: #3b82f6; /* Tailwind blue-500 */
+  transform: scale(1.15);
+}
+
+/* ===== Scroll Down Button ===== */
 .scroll-down {
   position: fixed;
   bottom: 2rem;
-  right: 0;
-  transform: translateX(-50%);
-  text-align: center;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: white;
   font-family: 'Montserrat', sans-serif;
-  animation: fadeIn 2s ease-in-out;
+  cursor: pointer;
   z-index: 11111;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-down:hover {
+  opacity: 1;
 }
 
 .scroll-down span {
@@ -79,59 +112,77 @@
   width: 2px;
   height: 30px;
   background: white;
-  margin: 0 auto 8px;
-  animation: scrollAnim 1.5s infinite;
+  margin-bottom: 8px;
+  animation: scrollAnim 1.8s infinite cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .scroll-down p {
-  cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
   letter-spacing: 2px;
-  opacity: 0.8;
+  text-transform: uppercase;
   margin: 0;
+  writing-mode: vertical-rl; /* Vertical text for elegance */
 }
 
 @keyframes scrollAnim {
-  0% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(8px); opacity: 0.5; }
-  100% { transform: translateY(0); opacity: 1; }
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(12px); opacity: 1; }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* ===== Responsive Design ===== */
+@media (max-width: 1024px) {
+  .section_components {
+    padding: 1.5rem;
+  }
 }
 
-/* responsive design */
-@media screen and (max-width:1200px) {
-  .sections{
-    height: auto;
-  }
-}
-@media screen and (max-width:900px){
-  .spacer{
-  height: 5rem;
-  width: 100vw;
-}
-  .sections{
-    height: auto;
-  }
-  .hero{
-    flex-direction: column;
-  }
-}
-@media screen and (max-width:650px) {
-  .spacer{
-    height: 8rem;
-  }
-  .socialLinks{
-    top: 0;
+@media (max-width: 768px) {
+  .socialLinks {
     left: 0;
     right: 0;
+    top: auto;
+    bottom: 1rem;
     flex-direction: row;
-    height: 2rem;
-    margin-top: 3.5rem;
-    font-size: 1rem;
-    backdrop-filter: blur(10px);
+    justify-content: center;
+    transform: none;
+    padding: 0.8rem;
+    gap: 1.2rem;
+    border-radius: 1rem;
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  .scroll-down {
+    right: 1rem;
+    bottom: 5rem; /* Avoids collision with social links */
+  }
+
+  .scroll-down p {
+    writing-mode: horizontal-tb; /* Horizontal on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .sections {
+    padding: 1rem 0;
+  }
+
+  .section_components {
+    padding: 1rem;
+  }
+
+  .hero {
+    height: auto;
+    min-height: calc(100vh - 80px);
+    padding: 1rem;
+  }
+
+  .socialLinks {
+    gap: 1rem;
+    padding: 0.6rem;
+  }
+
+  .socialLinks a {
+    font-size: 1.2rem; /* Slightly larger for touch targets */
   }
 }
