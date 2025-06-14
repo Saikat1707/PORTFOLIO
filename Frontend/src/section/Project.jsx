@@ -43,15 +43,17 @@ const Project = () => {
             <div className="card_text">
               <h3>{projectData[0].title}</h3>
               <p>{projectData[0].projectDescription}</p>
-              <a href={projectData[0].url} target="_blank" rel="noopener noreferrer">
+              <div className='flex gap-3'>
+                <a href={projectData[0].url} target="_blank" rel="noopener noreferrer">
                  <FaGithub className="text-2xl text-white hover:text-gray-400 transition" />
-              </a>
-              <a href="https://www.linkedin.com/posts/saikat-bera-42b7b6267_dutio-webapp-inprogress-activity-7330993012564520962-N7Ua?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEFvqeMB8fwmW3RW1884t1cIMzqR4QVTdRU" target="_blank" rel="noopener noreferrer">
-                <FaLinkedin className="text-2xl text-blue-600 hover:text-blue-800 transition" />
-              </a>
-              <a href="https://dution-collab-nine.vercel.app" target="_blank" rel="noopener noreferrer">
-                <FiExternalLink className="text-xl text-white hover:text-gray-400 transition" />
-              </a>
+                </a>
+                <a href="https://www.linkedin.com/posts/saikat-bera-42b7b6267_dutio-webapp-inprogress-activity-7330993012564520962-N7Ua?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEFvqeMB8fwmW3RW1884t1cIMzqR4QVTdRU" target="_blank" rel="noopener noreferrer">
+                  <FaLinkedin className="text-2xl text-blue-600 hover:text-blue-800 transition" />
+                </a>
+                <a href="https://dution-collab-nine.vercel.app" target="_blank" rel="noopener noreferrer">
+                  <FiExternalLink className="text-xl text-white hover:text-gray-400 transition" />
+                </a>
+              </div>
             </div>
           </div>
 
