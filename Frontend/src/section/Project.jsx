@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../css/sectionCSS/Project.css';
 import axios from '../config/axiosConfig';
 import { FaGithub } from 'react-icons/fa';
+import { FaLinkedin } from 'react-icons/fa';
+import { FiExternalLink } from 'react-icons/fi';
 
 const Project = () => {
   const [projectData, setProjectData] = useState([]);
@@ -45,7 +47,10 @@ const Project = () => {
                  <FaGithub className="text-2xl text-white hover:text-gray-400 transition" />
               </a>
               <a href="https://www.linkedin.com/posts/saikat-bera-42b7b6267_dutio-webapp-inprogress-activity-7330993012564520962-N7Ua?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEFvqeMB8fwmW3RW1884t1cIMzqR4QVTdRU" target="_blank" rel="noopener noreferrer">
-                🔗 View Project on LinkedIN
+                <FaLinkedin className="text-2xl text-blue-600 hover:text-blue-800 transition" />
+              </a>
+              <a href="https://dution-collab-nine.vercel.app" target="_blank" rel="noopener noreferrer">
+                <FiExternalLink className="text-xl text-white hover:text-gray-400 transition" />
               </a>
             </div>
           </div>
