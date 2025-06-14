@@ -50,7 +50,7 @@ const Project = () => {
                 <a href="https://www.linkedin.com/posts/saikat-bera-42b7b6267_dutio-webapp-inprogress-activity-7330993012564520962-N7Ua?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEFvqeMB8fwmW3RW1884t1cIMzqR4QVTdRU" target="_blank" rel="noopener noreferrer">
                   <FaLinkedin className="text-2xl text-blue-600 hover:text-blue-800 transition" />
                 </a>
-                <a href="https://dution-collab-nine.vercel.app" target="_blank" rel="noopener noreferrer">
+                <a href="https://dutio-collab-nine.vercel.app/" target="_blank" rel="noopener noreferrer">
                   <FiExternalLink className="text-xl text-white hover:text-gray-400 transition" />
                 </a>
               </div>
