@@ -24,7 +24,7 @@ const Project = () => {
 
 
  return (
-  <div className="Project_container projectContainer2">
+  <div className="Project_container">
     {loading ? (
       <div className="flex flex-col items-center justify-center gap-2 min-h-[300px]">
         <div className="w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
