@@ -11,10 +11,7 @@ import Lottie from 'lottie-react'
 const HeroBody = () => {
   return (
     <>
-      {/* <div className="pageNumber"><h1>01</h1> </div> */}
-
       <div className="Hero_body_partition hero_body_image">
-        {/* <img src={profileIMg} alt="avatar" /> */}
         <div style={{ width: '100%', height: '100%' }}>
           <Lottie animationData={profileAnimation} loop={true} />
         </div>
