@@ -7,9 +7,8 @@ const { uploadFileFromBuffer } = require('../config/cloudinary.config');
 
 const createProject = async (req, res) => {
   try {
-    const { title, url, projectDescription } = req.body;
-
-    if (!title || !url || !projectDescription) {
+    const { title, githubUrl, linkedinUrl , liveUrl , projectDescription } = req.body;
+    if (!title || !githubUrl || !projectDescription) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -39,7 +38,9 @@ const createProject = async (req, res) => {
     // Create project with image ref
     const project = await projectModel.create({
       title,
-      url,
+      githubUrl,
+      linkedinUrl,
+      liveUrl,
       projectDescription,
       projectImageRefId: projectImageData._id,
     });
@@ -53,20 +54,19 @@ const createProject = async (req, res) => {
 
 
 
-// Get All Projects
 const getAllProjects = async (req, res) => {
     try {
         const projects = await projectModel.find().populate('projectImageRefId');
         if (!projects) {
             return res.status(404).json({ message: 'No projects found' });
         }
+        console.log(projects)
         return res.status(200).json({ message: 'Projects fetched successfully', data: projects });
     } catch (error) {
         return res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
 
-// Delete Project
 const deleteProject = async (req, res) => {
     try {
         const { id } = req.params.id;
@@ -75,11 +75,7 @@ const deleteProject = async (req, res) => {
         if (!project) {
             return res.status(404).json({ message: 'Project not found' });
         }
-
-        // Delete associated image
         await imageModel.findByIdAndDelete(project.projectImageRefId);
-
-        // Delete the project
         await projectModel.findByIdAndDelete(id);
 
         return res.status(200).json({ message: 'Project deleted successfully' });
@@ -92,7 +88,7 @@ const deleteProject = async (req, res) => {
 const updateProject = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, url, projectDescription } = req.body;
+    const { title, githubUrl, linkedinUrl , liveUrl , projectDescription } = req.body;
 
     const project = await projectModel.findById(id);
     if (!project) {
@@ -101,7 +97,9 @@ const updateProject = async (req, res) => {
 
     // Update text fields
     if (title) project.title = title;
-    if (url) project.url = url;
+    if (githubUrl) project.githubUrl = githubUrl;
+    if (linkedinUrl) project.linkedinUrl = linkedinUrl;
+    if (liveUrl) project.liveUrl = liveUrl;
     if (projectDescription) project.projectDescription = projectDescription;
 
     // If a new image is uploaded

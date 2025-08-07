@@ -114,29 +114,27 @@ const HeroSection = () => {
         </div>
         
         {/* Skills */}
-        <div className='sections'>
+        <div>
             <div className='section_components'>
                 <Skills/>
             </div>
-
         </div>
 
         {/* Project */}
-        <div className='sections project'>
+        <div className='project'>
             <div className='section_components flex-col'>
-            <h2 className='text-xl text-blue-500 font-bold'>#Some of my works</h2>
+                <h1 className="relative inline-block px-4 py-2 bg-blue-600 text-white font-bold text-xl rounded-lg shadow-lg before:content-[''] before:absolute before:-top-2 before:-right-2 before:w-4 before:h-4 before:bg-blue-800 before:rounded-full">
+                   💼 Some of my Works
+                </h1>
                 <Project/>
             </div>
-
         </div>
 
         {/* contact me */}
         <div className='sections contactMe'>
-
             <div className='section_components'>
                 <Contact/>
             </div>
-
         </div>
       </div>
     </>

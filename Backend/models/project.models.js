@@ -5,9 +5,17 @@ const projectSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    url: {
+    githubUrl: {
         type: String,
         required: true,
+    },
+    linkedinUrl: {
+        type: String,
+        default:''
+    },
+    liveUrl: {
+        type: String,
+        default:''
     },
     projectDescription: {
         type: String,
