@@ -62,7 +62,7 @@ const Project = () => {
           />
         )}
         <div className="TextBox">
-          <h3>{project.title}</h3>
+          <h3 className='text-amber-500 font-bold'>{project.title}</h3>
           <p>{project.projectDescription}</p>
           <div className="TextBoxProjectLink">
             <a href={project.githubUrl} target="_blank" rel="noreferrer">
