@@ -1,113 +1,82 @@
 .Project_container {
   height: 90%;
   width: 100%;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.project_grid {
-  height: 100%;
-  width: 50%;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 1rem;
+  padding-bottom:1rem ;
   gap: 1rem;
   display: flex;
-  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
 }
-
-.tall_card {
-  height: 100%;
-  width: 40%;
-  border-radius: 12px;
+@media screen and (max-Width:1100px){
+  .Project_container{
+    flex-direction: column;
+  }
+}
+.TallCard{
+  width: 50%;
   display: flex;
+  align-items: start;
+  justify-content: space-between;
   flex-direction: column;
+  backdrop-filter: blur(10px);
+  background-color: #413f3f9a;
+}
+.SmallCards{
+  display: flex;
   align-items: center;
-  justify-content: space-evenly;
-}
-.short_card{
-    height: 50%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 1rem;
+  width: 50%;
 }
 
-.tall_card .card_image{
-    height: 70%;
-    width: 100%;
-    padding: 0.5rem;
+.SmallCard{
+  height: auto;
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  background-color: #413f3f9a;
 }
-.tall_card .card_text{
-    width: 100%;
-    height: 30%;
-    padding: 0.5rem;
-    background-color: black;
+.SmallCard img{
+  width: 60%;
+  height: 100%;
 }
-.short_card .card_image{
-    width: 60%;
-    height: 100%;
-    padding: 0.5rem;
+.TextBox{
+  padding: 1rem;
 }
-.short_card .card_text{
-    width: 40%;
-    height: 100%;
-    padding: 0.5rem;
-    background-color: black;
-}
-.card_image > img{
-    height: 100%;
-    width: 100%;
-    background-position: center;
-    background-size: contain;
-}
-.card_text h3{
-    color: rgb(255, 140, 0);
-    font-weight: 700;
-    font-size: 1rem;
-}
-.card_text a{
+.TextBox P:first-child{
+  color: rgb(255, 153, 0);
   font-weight: 700;
-  color: rgb(63, 16, 252);
+}
+.TextBoxProjectLink{
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: start;
+  gap: 1rem;
 }
 
-@media screen and (max-width: 1200px) {
-  .Project_container {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .tall_card,
-  .project_grid {
+@media screen and (max-width:1100px) {
+  .TallCard{
     width: 100%;
   }
-
-  .project_grid {
-    flex-direction: column;
-    gap: 1rem;
+  .SmallCards{
+    width: 100%;
   }
-
-  .tall_card {
-    height: auto;
-  }
-
-  .short_card {
-    height: auto;
+  .SmallCard{
     flex-direction: column;
   }
-
-  .short_card .card_image,
-  .short_card .card_text {
+  .SmallCard img{
     width: 100%;
-    height: auto;
   }
-
-  .tall_card .card_image,
-  .tall_card .card_text {
-    width: 100%;
-    height: auto;
-  }
-
-  .card_image > img {
-    object-fit: cover;
+}
+@media screen and (max-width: 650px) {
+  .Project_container{
+    padding: 1rem;
   }
 }

@@ -3,7 +3,7 @@
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   flex-direction: column;
 }
 
@@ -16,7 +16,7 @@
   height: 90%;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   gap: 1rem;
 }
@@ -25,15 +25,20 @@
   width: 40%;
   display: flex;
   align-items: start;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-direction: column;
 }
 .Education h1{
   margin-bottom: 1rem;
+  padding: 0.4rem;
 }
 .Experience{
   height: 100%;
   width: 50%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
 }
 .Education_cards{
   height: 90%;
@@ -63,6 +68,7 @@
 
 .Experience h1{
   margin-bottom: 1rem;
+  padding: 0.3rem;
 }
 
 .experience_card {
@@ -103,11 +109,17 @@
     flex-direction: column;
     gap: 2rem;
     padding: 1rem;
+    
   }
 
   .Education, .Experience {
-    width: 90%; /* Allow both sections to take full width on smaller screens */
+    width: 100%;
     height: auto;
+  }
+  .Experience{
+    background-color: #2a2929a7;
+    padding: 1rem;
+    border-radius: 1rem ;
   }
 
   .Education_cards, .experience_card {
